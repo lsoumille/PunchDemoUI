@@ -9,3 +9,5 @@ grafana = "http://" + punchplatform_ip + ":3000"
 punch_admin = "http://" + punchplatform_ip + ":5000"
 
 storm_ui = "http://" + punchplatform_ip + ":8080"
+
+tenant = "mytenant"

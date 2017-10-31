@@ -72,7 +72,7 @@ class Window(QMainWindow):
         self.form_widget = HomePanel(self)
         self.setCentralWidget(self.form_widget)
 
-        self.setGeometry(700, 100, 300, 300)
+        self.setGeometry(700, 100, 400, 300)
         self.setWindowTitle('PunchDemo UI')
         self.show()
 

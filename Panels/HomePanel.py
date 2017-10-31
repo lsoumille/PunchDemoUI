@@ -3,7 +3,8 @@
 
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout
 
-from Utils import StringHelper, SSHHelper
+from PunchAction import PunchAdmin
+from Utils import StringHelper
 
 
 class HomePanel(QWidget):
@@ -12,11 +13,10 @@ class HomePanel(QWidget):
 
     def __init__(self, parent):
         super(HomePanel, self).__init__(parent)
-        self.client = SSHHelper.SSHHelper()
         self.initUI()
 
     def initUI(self):
-        mystr = SSHHelper.SSHHelper.getPunchStatus(self.client)
+        mystr = PunchAdmin.PunchAdmin().getPunchStatus()
         parsedServices = StringHelper.StringHelper().getParsedStatus(mystr)
 
         grid = QGridLayout()
