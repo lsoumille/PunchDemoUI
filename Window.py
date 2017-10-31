@@ -7,6 +7,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QAction, QApplication
 
 from Panels.HomePanel import HomePanel
+from Panels.InjectPanel import InjectPanel
+from Panels.SystemPanel import SystemPanel
 from Utils import URLs, SSHHelper
 
 
@@ -70,7 +72,7 @@ class Window(QMainWindow):
         self.form_widget = HomePanel(self)
         self.setCentralWidget(self.form_widget)
 
-        self.setGeometry(700, 100, 700, 700)
+        self.setGeometry(700, 100, 300, 300)
         self.setWindowTitle('PunchDemo UI')
         self.show()
 
@@ -79,9 +81,13 @@ class Window(QMainWindow):
         self.setCentralWidget(self.form_widget)
 
     def loadPunchAdnminCliked(self):
+        self.form_widget = SystemPanel(self)
+        self.setCentralWidget(self.form_widget)
         return
 
     def loadPunchInjectCliked(self):
+        self.form_widget = InjectPanel(self)
+        self.setCentralWidget(self.form_widget)
         return
 
 if __name__ == '__main__':
