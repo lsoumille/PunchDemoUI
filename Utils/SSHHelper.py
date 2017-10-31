@@ -1,5 +1,7 @@
 import paramiko
 
+from Utils import Constants
+
 
 class SSHHelper:
 
@@ -12,8 +14,7 @@ class SSHHelper:
     def connectToPunchPlatform(self):
         self.client.load_system_host_keys()
         self.client.set_missing_host_key_policy(paramiko.WarningPolicy)
-        #TODO
-        self.client.connect("192.168.1.91", 22, "adm-infra", "azerty")
+        self.client.connect(Constants.punchplatform_ip, Constants.ssh_port, Constants.account, Constants.password)
 
     def sendCommand(self, command):
         stdin, stdout, stderr = self.client.exec_command(command)
