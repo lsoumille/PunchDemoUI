@@ -33,6 +33,8 @@ class PunchAdmin:
         t.start()
 
     def clearData(self):
-        t = threading.Thread(target=self.client.sendCommand, args=(
-        Constants.env_variables + "/home/adm-infra/punchplatform-standalone-3.3.5/bin/punchplatform-channel.sh --stop " + Constants.tenant,))
-        t.start()
+        #TODO Retrieve all indices (except .kibana) and delete them
+        #t = threading.Thread(target=self.client.sendCommand, args=(
+        #Constants.env_variables + "/home/adm-infra/punchplatform-standalone-3.3.5/bin/punchplatform-channel.sh --stop " + Constants.tenant,))
+        #t.start()
+        return
