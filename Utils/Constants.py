@@ -12,6 +12,10 @@ punch_admin = "http://" + punchplatform_ip + ":5000"
 
 storm_ui = "http://" + punchplatform_ip + ":8080"
 
+elastic = "http://" + punchplatform_ip + ":9200"
+
+elastic_indices = "http://" + punchplatform_ip + ":9200/_cat/indices"
+
 tenant = "mytenant"
 
 account = "adm-infra"

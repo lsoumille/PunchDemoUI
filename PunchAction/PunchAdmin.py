@@ -2,6 +2,7 @@ import threading
 
 from Utils import SSHHelper
 from Utils import Constants
+from Utils import URLs
 
 class PunchAdmin:
 
@@ -33,8 +34,12 @@ class PunchAdmin:
         t.start()
 
     def clearData(self):
-        #TODO Retrieve all indices (except .kibana) and delete them
-        #t = threading.Thread(target=self.client.sendCommand, args=(
-        #Constants.env_variables + "/home/adm-infra/punchplatform-standalone-3.3.5/bin/punchplatform-channel.sh --stop " + Constants.tenant,))
-        #t.start()
+        #Get all indices
+        indices = URLs.getIndicesFromElastic()
+        #delete indices if it's not equal to .kibana
+        for indice in indices:
+            if indice == '.kibana':
+                continue
+            t = threading.Thread(target=URLs.deleteIndice, args=(indice,))
+            t.start()
         return

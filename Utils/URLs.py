@@ -1,6 +1,8 @@
 import webbrowser
+import pycurl
+from io import BytesIO
 
-from Utils import Constants
+from Utils import Constants, StringHelper
 
 
 def goToKibana(self):
@@ -17,3 +19,26 @@ def goToPunchAdmin(self):
 
 def goToStorm(self):
     webbrowser.open_new_tab(Constants.storm_ui)
+
+def getIndicesFromElastic():
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, Constants.elastic_indices)
+    c.setopt(c.WRITEDATA, buffer)
+    c.perform()
+    c.close()
+
+    body = buffer.getvalue()
+    return StringHelper.StringHelper().getAllIndiceNames(body.decode())
+
+def deleteIndice(indice):
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, Constants.elastic + "/" + indice)
+    c.setopt(pycurl.CUSTOMREQUEST, "DELETE")
+    c.setopt(c.WRITEDATA, buffer)
+    c.perform()
+    c.close()
+
+    body = buffer.getvalue()
+    return body.decode()

@@ -4,7 +4,7 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout
 
 from PunchAction import PunchAdmin
-from Utils import StringHelper
+from Utils import StringHelper, URLs
 
 
 class HomePanel(QWidget):

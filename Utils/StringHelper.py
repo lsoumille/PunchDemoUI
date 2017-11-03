@@ -19,3 +19,12 @@ class StringHelper():
         for serv in tab:
             serviceAndStatus[self.getServiceFromStatus(serv)] = self.getStateFromStatus(serv)
         return serviceAndStatus
+
+    def getAllIndiceNames(self, indices):
+        tab = str.split(indices, '\n')
+        indices = []
+        for line in tab:
+            if line == '':
+                continue
+            indices.append(str.split(line, ' ')[2])
+        return indices
