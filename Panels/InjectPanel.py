@@ -3,27 +3,28 @@
 
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QPushButton
 
+from PunchAction import PunchInject
+from PunchAction.PunchAdmin import PunchAdmin
 from Utils import StringHelper, SSHHelper
 
 
 class InjectPanel(QWidget):
 
-    name = "System Panel"
+    name = "Inject Panel"
 
     def __init__(self, parent):
         super(InjectPanel, self).__init__(parent)
-        self.client = SSHHelper.SSHHelper()
+        self.client = PunchInject.PunchInject()
         self.initUI()
 
     def initUI(self):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        #positions = [(i, j) for i in range(6) for j in range(1)]
-
         lbLine = QLabel("Noise :", self)
         buttonStartInjection = QPushButton('Start Noise Injection', self)
         buttonStartInjection.setToolTip('Click to start Noise Injection')
+        buttonStartInjection.clicked.connect(self.client.injectNoise)
         buttonStopInjection = QPushButton('Stop Noise Injection', self)
         buttonStopInjection.setToolTip('Click to stop Noise Injection')
         grid.addWidget(lbLine, 0, 0)
