@@ -3,9 +3,7 @@
 
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QPushButton
 
-from PunchAction import PunchInject
-from PunchAction.PunchAdmin import PunchAdmin
-from Utils import StringHelper, SSHHelper
+import PunchAction
 
 
 class InjectPanel(QWidget):
@@ -14,7 +12,7 @@ class InjectPanel(QWidget):
 
     def __init__(self, parent):
         super(InjectPanel, self).__init__(parent)
-        self.client = PunchInject.PunchInject()
+        self.client = PunchAction.PunchInject.PunchInject()
         self.initUI()
 
     def initUI(self):
@@ -27,6 +25,7 @@ class InjectPanel(QWidget):
         buttonStartInjection.clicked.connect(self.client.injectNoise)
         buttonStopInjection = QPushButton('Stop Noise Injection', self)
         buttonStopInjection.setToolTip('Click to stop Noise Injection')
+        buttonStopInjection.clicked.connect(self.client.stopNoise)
         grid.addWidget(lbLine, 0, 0)
         grid.addWidget(buttonStartInjection, 1, 0)
         grid.addWidget(buttonStopInjection, 1, 1)

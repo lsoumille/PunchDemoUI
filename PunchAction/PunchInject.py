@@ -1,6 +1,8 @@
-from Utils import SSHHelper
+import threading
+
 from Utils import Constants
-from Utils.FileHelper import FileHelper
+from Utils import FileHelper
+from Utils import SSHHelper
 
 
 class PunchInject:
@@ -16,10 +18,15 @@ class PunchInject:
         #Save PID for each injection process to kill them if wished
         pids = str.split(self.client.result, '\n')
         print(pids)
-        FileHelper.saveToPIDFile(pids[1:len(pids)])
-        return self.client.result
+        FileHelper.FileHelper().saveToPIDFile(pids[1:len(pids)])
+        return
 
     def stopNoise(self):
+        #Get PID from .pid and kill them
+        pids = FileHelper.FileHelper().getSavedPids()
+        for pid in pids:
+            t = threading.Thread(target=self.client.sendCommand, args=(Constants.env_variables + "kill -9 " + pid,))
+            t.start()
         return
 
     def injectDDOS(self):

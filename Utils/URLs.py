@@ -1,5 +1,5 @@
-import webbrowser
 import pycurl
+import webbrowser
 from io import BytesIO
 
 from Utils import Constants, StringHelper
