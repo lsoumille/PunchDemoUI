@@ -16,9 +16,11 @@ class SSHHelper:
         self.client.set_missing_host_key_policy(paramiko.WarningPolicy)
         self.client.connect(Constants.punchplatform_ip, Constants.ssh_port, Constants.account, Constants.password)
 
-    def sendCommand(self, command):
+    def sendCommand(self, command, killSession=False):
         stdin, stdout, stderr = self.client.exec_command(command)
         self.result = stdout.read().decode("utf-8")
         print(self.result)
         print(stderr.read)
+        if killSession:
+            self.client.close()
         return str(stdout.read())

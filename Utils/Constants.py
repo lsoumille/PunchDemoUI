@@ -23,3 +23,5 @@ account = "adm-infra"
 password = "azerty"
 
 noise_path = "/home/adm-infra/punchplatform-standalone-3.3.5/conf/resources/injector/demo/noise/launchNoise.sh"
+
+ddos_path = "/home/adm-infra/punchplatform-standalone-3.3.5/conf/resources/injector/demo/ddos/launchIncident.sh"

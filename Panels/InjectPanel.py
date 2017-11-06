@@ -3,7 +3,7 @@
 
 from PyQt5.QtWidgets import QWidget, QLabel, QGridLayout, QPushButton
 
-import PunchAction
+from PunchAction import PunchInject
 
 
 class InjectPanel(QWidget):
@@ -12,7 +12,7 @@ class InjectPanel(QWidget):
 
     def __init__(self, parent):
         super(InjectPanel, self).__init__(parent)
-        self.client = PunchAction.PunchInject.PunchInject()
+        self.client = PunchInject.PunchInject()
         self.initUI()
 
     def initUI(self):
@@ -31,9 +31,10 @@ class InjectPanel(QWidget):
         grid.addWidget(buttonStopInjection, 1, 1)
 
         lbLine2 = QLabel("DDOS scenario :", self)
-        buttonStartChannels = QPushButton('Start DDOS Attack', self)
-        buttonStartChannels.setToolTip('Click to start DDOS logs')
+        buttonStartDdos = QPushButton('Start DDOS Attack', self)
+        buttonStartDdos.setToolTip('Click to start DDOS logs')
+        buttonStartDdos.clicked.connect(self.client.injectDDOS)
         grid.addWidget(lbLine2, 2, 0)
-        grid.addWidget(buttonStartChannels, 3, 0)
+        grid.addWidget(buttonStartDdos, 3, 0)
 
         self.setGeometry(300, 300, 250, 150)

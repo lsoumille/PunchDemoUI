@@ -28,3 +28,17 @@ class StringHelper():
                 continue
             indices.append(str.split(line, ' ')[2])
         return indices
+
+    def getAllPids(self, pids):
+        tab = str.split(pids, '\n')
+        allpids = []
+        for line in tab:
+            if line == '':
+                continue
+            fields = str.split(line, ' ')
+            if fields[0] == '' and fields[1] != '':
+                allpids.append(fields[1])
+            elif fields[0] != '':
+                allpids.append(fields[0])
+        return allpids
+
